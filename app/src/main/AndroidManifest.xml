@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.meet.mogo">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Create_fifth"></activity>
+        <activity android:name=".Join_forth" />
+        <activity android:name=".Create_forth" />
+        <activity android:name=".Create_third" />
+        <activity android:name=".Join_third" />
+        <activity android:name=".Create_second" />
+        <activity android:name=".Join_second" />
+        <activity android:name=".Create_first" />
+        <activity android:name=".Join_first" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

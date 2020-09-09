@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "533984864890",
+    "firebase_url": "https://mogo-3591e.firebaseio.com",
+    "project_id": "mogo-3591e",
+    "storage_bucket": "mogo-3591e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533984864890:android:1da48267bec81005da29c3",
+        "android_client_info": {
+          "package_name": "com.meet.mogo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533984864890-8oijdjbf33nm1nfn07padprfad5mgb1n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.meet.mogo",
+            "certificate_hash": "bb0c6984879823cee6e869cd2d992ce8387032b9"
+          }
+        },
+        {
+          "client_id": "533984864890-bab7u10svpoj25n3bd5v1cq10p91s6d6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnDilI7eW47NUepgygDIdYtORqp0edRno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533984864890-bab7u10svpoj25n3bd5v1cq10p91s6d6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
