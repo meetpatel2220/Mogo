@@ -1,5 +1,7 @@
 package com.meet.mogo;
 
+import com.google.firebase.firestore.PropertyName;
+
 public class Model_Join_forth {
 
 
@@ -18,6 +20,7 @@ public class Model_Join_forth {
         this.userid = userid;
     }
 
+    @PropertyName("name")
     public String getName() {
         return name;
     }

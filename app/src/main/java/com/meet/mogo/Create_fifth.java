@@ -70,7 +70,7 @@ public class Create_fifth extends AppCompatActivity {
 
             Intent in1=getIntent();
             String itemname1=in1.getStringExtra("itemname");
-            String itemuid1=in1.getStringExtra("itemuid");
+            final String itemuid1=in1.getStringExtra("itemuid");
 
             itemname.setText(itemname1+"");
 
@@ -96,7 +96,7 @@ public class Create_fifth extends AppCompatActivity {
 
                     }
 
-                    adaptor = new Adeptor_Create_fifth(Create_fifth.this, list_data);
+                    adaptor = new Adeptor_Create_fifth(Create_fifth.this, list_data,itemuid1);
                     rv.setAdapter(adaptor);
 
 
@@ -109,12 +109,5 @@ public class Create_fifth extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
 
-    Intent in=new Intent(Create_fifth.this,Create_forth.class);
-    startActivity(in);
-    finish();
-    }
 }

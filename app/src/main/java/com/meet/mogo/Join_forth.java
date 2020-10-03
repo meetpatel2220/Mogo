@@ -71,8 +71,8 @@ public class Join_forth extends AppCompatActivity {
 
 
             Intent in1=getIntent();
-            String itemname1=in1.getStringExtra("itemname1");
-            String itemuid1=in1.getStringExtra("itemuid1");
+            String itemname1=in1.getStringExtra("itemname");
+            String itemuid1=in1.getStringExtra("itemuid");
 
             itemname.setText(itemname1+"");
 

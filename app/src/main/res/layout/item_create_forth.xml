@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:elevation="10dp"
-        android:focusable="true"
-        app:cardCornerRadius="25dp"
-        tools:targetApi="lollipop">
-
-
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp">
 
 
         <RelativeLayout
@@ -111,23 +99,56 @@
                 android:textColor="@color/darkBlack"
                 android:textSize="18sp" />
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/deadlineend"
+                android:layout_marginTop="7dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Details"
+                android:textColor="@color/darkBlack"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/deadlineend"
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="sans-serif-light"
+                android:text="deadlineend"
+                android:textColor="@color/darkBlack"
+                android:textSize="18sp" />
+
             <Button
                 android:id="@+id/b1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Deadline end"
-                android:layout_below="@+id/deadlineend"
+                android:layout_below="@+id/details"
                 android:layout_marginTop="7dp"
                 android:fontFamily="sans-serif-light"
 >
 
             </Button>
 
+            <Button
+                android:id="@+id/b2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Delete item"
+                android:layout_below="@+id/b1"
+                android:layout_marginTop="7dp"
+                android:fontFamily="sans-serif-light"
+                >
+
+            </Button>
 
 
         </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
 
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

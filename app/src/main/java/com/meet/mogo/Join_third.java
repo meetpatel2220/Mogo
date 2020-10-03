@@ -136,8 +136,8 @@ public class Join_third extends AppCompatActivity {
         String itemname1=in1.getStringExtra("itemname");
 
         Intent in=new Intent(Join_third.this,Join_forth.class);
-        in.putExtra("itemuid1",itemuid);
-        in.putExtra("itemname1",itemname1);
+        in.putExtra("itemuid",itemuid);
+        in.putExtra("itemname",itemname1);
         startActivity(in);
 
     }

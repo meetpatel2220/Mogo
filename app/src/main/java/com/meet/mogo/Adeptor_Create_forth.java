@@ -17,116 +17,55 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Adeptor_Create_forth extends RecyclerView.Adapter<Adeptor_Create_forth.ViewHolder> {
+import static androidx.recyclerview.widget.DiffUtil.DiffResult.NO_POSITION;
 
-    Context fcontext;
-    List<Model_Create_forth> fupload;
-
-     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    SharedPreferences sp;
-    public static final String mypreference = "mypreference";
+public class Adeptor_Create_forth extends FirestoreRecyclerAdapter<Model_Create_forth, Adeptor_Create_forth.NoteHolder> {
+    private OnItemClickListener listener;
 
 
-    public void add(Model_Create_forth s) {
-        fupload.add(s);
-    }
-    public Adeptor_Create_forth(Context context, List<Model_Create_forth> user) {
-        fcontext = context;
-        fupload = user;
-
+    public Adeptor_Create_forth(@NonNull FirestoreRecyclerOptions<Model_Create_forth> options) {
+        super(options);
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(fcontext).inflate(R.layout.item_create_forth, parent, false);
-        return new ViewHolder(view);
-
+    public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_create_forth,
+                parent, false);
+        return new NoteHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+    protected void onBindViewHolder(@NonNull NoteHolder holder, int position, @NonNull Model_Create_forth model) {
+        holder.name.setText(model.getName());
+        holder.price.setText(model.getPrice());
+        holder.deadline.setText(model.getDeadline());
+        holder.deadlineend.setText(model.getDeadlineend());
 
-        holder.name.setText(fupload.get(position).getName());
-        holder.price.setText(fupload.get(position).getPrice());
-        holder.deadline.setText(fupload.get(position).getDeadline());
-        holder.deadlineend.setText(fupload.get(position).getDeadlineend());
-
-        holder.b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Toast.makeText(fcontext, "item received this ", Toast.LENGTH_SHORT).show();
-
-                sp = fcontext.getSharedPreferences(mypreference,
-                        Context.MODE_PRIVATE);
-
-                if (sp.contains("collegecode") && sp.contains("classcode")) {
-                    String classcode1 = sp.getString("classcode", "");
-                    String collegecode1 = sp.getString("collegecode", "");
-                    String collegename1 = sp.getString("collegename", "");
-
-                    Map<String,Object> map=new HashMap<>();
-                    map.put("deadlineend","yes");
-                    db.collection(collegecode1 + "").document(classcode1 + "")
-                            .collection("item").document(fupload.get(position).getItemid())
-                            .set(map, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(fcontext, fupload.get(position).getName()+" 's deadline is end ", Toast.LENGTH_SHORT).show();
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(fcontext, "something Error !! Please try again", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-
-                }
-
-            }
-        });
-
-        holder.cv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                Intent in=new Intent(fcontext,Create_fifth.class);
-                in.putExtra("itemuid",fupload.get(position).getItemid());
-                in.putExtra("itemname",fupload.get(position).getName());
-                fcontext.startActivity(in);
-                ((Activity)fcontext).finish();
-            }
-        });
 
     }
 
-    @Override
-    public int getItemCount() {
-        return fupload.size();
+    public void deleteItem(int position) {
+        getSnapshots().getSnapshot(position).getReference().delete();
     }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-
+    class NoteHolder extends RecyclerView.ViewHolder {
         TextView name,price,deadline,deadlineend;
-        Button b1;
-        CardView cv;
-        ViewHolder(@NonNull View itemView) {
+        Button b1,b2;
+        public NoteHolder(View itemView) {
             super(itemView);
-
             name=itemView.findViewById(R.id.name);
             price=itemView.findViewById(R.id.price);
             deadline=itemView.findViewById(R.id.deadline);
@@ -134,10 +73,52 @@ public class Adeptor_Create_forth extends RecyclerView.Adapter<Adeptor_Create_fo
 
             b1=itemView.findViewById(R.id.b1);
 
-            cv=itemView.findViewById(R.id.cv);
+            b2=itemView.findViewById(R.id.b2);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemClick(getSnapshots().getSnapshot(position), position);
+                    }
+                }
+            });
+
+         b1.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+
+                 int position = getAdapterPosition();
+                 if (position != RecyclerView.NO_POSITION && listener != null) {
+                     listener.onItemDeadline(getSnapshots().getSnapshot(position), position);
+                 }
+
+             }
+         });
+            b2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemDelete(getSnapshots().getSnapshot(position), position);
+                    }
+
+                }
+            });
+
         }
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+        void onItemDeadline(DocumentSnapshot documentSnapshot, int position);
+        void onItemDelete(DocumentSnapshot documentSnapshot, int position);
+
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
 }
 

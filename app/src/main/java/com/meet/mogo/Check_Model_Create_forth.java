@@ -1,37 +1,24 @@
 package com.meet.mogo;
 
-import com.google.firebase.firestore.PropertyName;
+public class Check_Model_Create_forth {
 
-public class Model_Create_forth {
+    private String name,price,deadline,details,deadlineend;
 
-    private String name,price,deadline,details,deadlineend,received;
-
-
-    public Model_Create_forth(String name, String price, String deadline, String details, String deadlineend, String received) {
+    public Check_Model_Create_forth(String name, String price, String deadline, String details, String deadlineend) {
         this.name = name;
         this.price = price;
         this.deadline = deadline;
         this.details = details;
         this.deadlineend = deadlineend;
-        this.received=received;
-    }
-    public void changetext(String text){
-        this.name=text;
-    }
-
-    public Model_Create_forth() {
 
     }
 
-    public String getReceived() {
-        return received;
+
+    public Check_Model_Create_forth() {
+
     }
 
-    public void setReceived(String received) {
-        this.received = received;
-    }
 
-    @PropertyName("name")
     public String getName() {
         return name;
     }
@@ -71,5 +58,6 @@ public class Model_Create_forth {
     public void setDeadlineend(String deadlineend) {
         this.deadlineend = deadlineend;
     }
+
 
 }
