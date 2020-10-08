@@ -4,16 +4,17 @@ import com.google.firebase.firestore.PropertyName;
 
 public class Model_Create_forth {
 
-    private String name,price,deadline,details,deadlineend,received;
+    private String name,price,deadline,details,deadlineend,received,itemid;
 
 
-    public Model_Create_forth(String name, String price, String deadline, String details, String deadlineend, String received) {
+    public Model_Create_forth(String name, String price, String deadline, String details, String deadlineend, String received, String itemid) {
         this.name = name;
         this.price = price;
         this.deadline = deadline;
         this.details = details;
         this.deadlineend = deadlineend;
         this.received=received;
+        this.itemid=itemid;
     }
     public void changetext(String text){
         this.name=text;
@@ -21,6 +22,14 @@ public class Model_Create_forth {
 
     public Model_Create_forth() {
 
+    }
+
+    public String getItemid() {
+        return itemid;
+    }
+
+    public void setItemid(String itemid) {
+        this.itemid = itemid;
     }
 
     public String getReceived() {

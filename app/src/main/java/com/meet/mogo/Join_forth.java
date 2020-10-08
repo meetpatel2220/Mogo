@@ -49,14 +49,6 @@ public class Join_forth extends AppCompatActivity {
         rv = findViewById(R.id.recycle);
 
         rv.setLayoutManager(new LinearLayoutManager(Join_forth.this));
-
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
         sp = getSharedPreferences(mypreference,
                 Context.MODE_PRIVATE);
 
@@ -72,7 +64,7 @@ public class Join_forth extends AppCompatActivity {
 
             Intent in1=getIntent();
             String itemname1=in1.getStringExtra("itemname");
-            String itemuid1=in1.getStringExtra("itemuid");
+            final String itemuid1=in1.getStringExtra("itemuid");
 
             itemname.setText(itemname1+"");
 
@@ -87,6 +79,7 @@ public class Join_forth extends AppCompatActivity {
 
                     }
 
+                   // list_data.clear();
                     for (QueryDocumentSnapshot documentSnapshot : value) {
 
                         Model_Join_forth code = documentSnapshot.toObject(Model_Join_forth.class);
@@ -98,7 +91,7 @@ public class Join_forth extends AppCompatActivity {
 
                     }
 
-                    adaptor = new Adeptor_Join_forth(Join_forth.this, list_data);
+                    adaptor = new Adeptor_Join_forth(Join_forth.this, list_data,itemuid1);
                     rv.setAdapter(adaptor);
 
 
@@ -109,4 +102,6 @@ public class Join_forth extends AppCompatActivity {
         }
 
     }
+
+
 }

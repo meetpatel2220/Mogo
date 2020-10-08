@@ -87,7 +87,7 @@ public class Join_second extends AppCompatActivity {
                     for (QueryDocumentSnapshot documentSnapshot : value) {
 
                         Model_Create_forth code = documentSnapshot.toObject(Model_Create_forth.class);
-//                        code.setItemid(documentSnapshot.getId());
+                        code.setItemid(documentSnapshot.getId());
 
 
                         list_data.add(code);

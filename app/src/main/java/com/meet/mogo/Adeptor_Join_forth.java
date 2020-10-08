@@ -1,7 +1,7 @@
 package com.meet.mogo;
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +13,35 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Adeptor_Join_forth extends RecyclerView.Adapter<Adeptor_Join_forth.ViewHolder> {
 
     Context fcontext;
     List<Model_Join_forth> fupload;
 
+    SharedPreferences sp;
+    public static final String mypreference = "mypreference";
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    String itemuid;
+    int i = 0;
+
     public void add(Model_Join_forth s) {
         fupload.add(s);
     }
-    public Adeptor_Join_forth(Context context, List<Model_Join_forth> user) {
+
+    public Adeptor_Join_forth(Context context, List<Model_Join_forth> user, String uid) {
         fcontext = context;
         fupload = user;
+        itemuid = uid;
 
     }
 
@@ -44,13 +60,31 @@ public class Adeptor_Join_forth extends RecyclerView.Adapter<Adeptor_Join_forth.
         holder.email.setText(fupload.get(position).getEmail());
         holder.payment.setText(fupload.get(position).getPayment());
         holder.received.setText(fupload.get(position).getReceived());
+        sp = fcontext.getSharedPreferences(mypreference,
+                Context.MODE_PRIVATE);
+
+        final String classcode1 = sp.getString("classcode", "");
+        final String collegecode1 = sp.getString("collegecode", "");
+        String collegename1 = sp.getString("collegename", "");
+
 
         holder.pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                    Map<String, String> map = new HashMap<>();
+                    map.put("payment", "done");
 
-                Toast.makeText(fcontext, "pay  xx/- rs", Toast.LENGTH_SHORT).show();
+                    db.collection(collegecode1 + "").document(classcode1 + "")
+                            .collection("item").document(itemuid + "").collection("user")
+                            .document(fupload.get(position).getUserid() + "")
+                            .set(map, SetOptions.merge());
+
+
+
+
+                holder.payment.setText("done");
+                // Toast.makeText(fcontext, "pay  xx/- rs", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -63,18 +97,19 @@ public class Adeptor_Join_forth extends RecyclerView.Adapter<Adeptor_Join_forth.
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name,email,payment,received;
+        TextView name, email, payment, received;
         CardView cv;
         Button pay;
+
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            name=itemView.findViewById(R.id.name);
-            email=itemView.findViewById(R.id.email);
-            payment=itemView.findViewById(R.id.payment);
-            received=itemView.findViewById(R.id.received);
+            name = itemView.findViewById(R.id.name);
+            email = itemView.findViewById(R.id.email);
+            payment = itemView.findViewById(R.id.payment);
+            received = itemView.findViewById(R.id.received);
 
-           pay=itemView.findViewById(R.id.b1);
+            pay = itemView.findViewById(R.id.b1);
 
         }
     }

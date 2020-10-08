@@ -58,6 +58,16 @@ public class Adeptor_Join_two extends RecyclerView.Adapter<Adeptor_Join_two.View
         holder.price.setText(fupload.get(position).getPrice());
         holder.deadline.setText(fupload.get(position).getDeadline());
 
+//        holder.cv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent in=new Intent(fcontext,Join_forth.class);
+////                                in.putExtra("itemuid",fupload.get(position).getItemid());
+//                in.putExtra("itemname",fupload.get(position).getName());
+//                fcontext.startActivity(in);
+//
+//            }
+//        });
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +81,7 @@ public class Adeptor_Join_two extends RecyclerView.Adapter<Adeptor_Join_two.View
                     String collegename1 = sp.getString("collegename", "");
 
                     db.collection(collegecode1 + "").document(classcode1 + "")
-//                            .collection("item").document(fupload.get(position).getItemid())
+                            .collection("item").document(fupload.get(position).getItemid())
                             .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
