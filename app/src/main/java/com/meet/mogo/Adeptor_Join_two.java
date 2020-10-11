@@ -91,14 +91,14 @@ public class Adeptor_Join_two extends RecyclerView.Adapter<Adeptor_Join_two.View
                             if(dead.equals("yes")){
 
                                 Intent in=new Intent(fcontext,Join_forth.class);
-//                                in.putExtra("itemuid",fupload.get(position).getItemid());
+                                in.putExtra("itemuid",fupload.get(position).getItemid());
                                 in.putExtra("itemname",fupload.get(position).getName());
                                 fcontext.startActivity(in);
 
                             }
                             else {
                                 Intent in=new Intent(fcontext,Join_third.class);
-//                                in.putExtra("itemuid",fupload.get(position).getItemid());
+                                in.putExtra("itemuid",fupload.get(position).getItemid());
                                 in.putExtra("itemname",fupload.get(position).getName());
                                 fcontext.startActivity(in);
 

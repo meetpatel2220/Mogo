@@ -75,18 +75,40 @@ public class Adeptor_Join_forth extends RecyclerView.Adapter<Adeptor_Join_forth.
                     Map<String, String> map = new HashMap<>();
                     map.put("payment", "done");
 
+//                    db.collection(collegecode1 + "").document(classcode1 + "")
+//                            .collection("item").document(itemuid + "").collection("user")
+//                            .document(fupload.get(position).getUserid() + "")
+//                            .set(map, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                        @Override
+//                        public void onSuccess(Void aVoid) {
+//                            holder.payment.setText("done");
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+//                            Toast.makeText(fcontext, "Something Error!!", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                    });
+
+                try {
                     db.collection(collegecode1 + "").document(classcode1 + "")
                             .collection("item").document(itemuid + "").collection("user")
                             .document(fupload.get(position).getUserid() + "")
                             .set(map, SetOptions.merge());
 
+                    holder.payment.setText("done");
+                }catch (Exception e){
+
+                }
 
 
-
-                holder.payment.setText("done");
                 // Toast.makeText(fcontext, "pay  xx/- rs", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        holder.setIsRecyclable(false);
 
     }
 

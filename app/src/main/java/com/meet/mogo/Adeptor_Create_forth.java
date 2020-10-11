@@ -1,6 +1,7 @@
 package com.meet.mogo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,15 +32,14 @@ public class Adeptor_Create_forth extends RecyclerView.Adapter<Adeptor_Create_fo
     public static final String mypreference = "mypreference";
      FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-     String itemuid;
 
     public void add(Model_Create_forth s) {
         fupload.add(s);
     }
-    public Adeptor_Create_forth(Context context, List<Model_Create_forth> user, String uid) {
+    public Adeptor_Create_forth(Context context, List<Model_Create_forth> user) {
         fcontext = context;
         fupload = user;
-        itemuid=uid;
+
 
     }
 
@@ -69,9 +69,28 @@ public class Adeptor_Create_forth extends RecyclerView.Adapter<Adeptor_Create_fo
             String collegename1 = sp.getString("collegename", "");
 
 
-            holder.pay.setOnClickListener(new View.OnClickListener() {
+            holder.deadlineButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    Map<String, Object> map = new HashMap<>();
+                      map.put("deadlineend", "yes");
+
+                    db.collection(collegecode1 + "").document(classcode1 + "")
+                            .collection("item").document(fupload.get(position).getItemid())
+                            .set(map,SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Toast.makeText(fcontext, "Deadline ended !!", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            Toast.makeText(fcontext, "Something problem !!!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
 
 
@@ -79,7 +98,44 @@ public class Adeptor_Create_forth extends RecyclerView.Adapter<Adeptor_Create_fo
                 }
             });
 
+            holder.Deletebutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
+
+                    db.collection(collegecode1 + "").document(classcode1 + "")
+                            .collection("item").document(fupload.get(position).getItemid())
+                            .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Toast.makeText(fcontext, fupload.get(position).getName()+" is deleted successful !!", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            Toast.makeText(fcontext, "Something problem in delete item !! ", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+
+
+                }
+            });
+
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent in=new Intent(fcontext,Create_fifth.class);
+                    in.putExtra("itemuid",fupload.get(position).getItemid());
+                    in.putExtra("itemname",fupload.get(position).getName());
+                    fcontext.startActivity(in);
+
+                }
+            });
 
 
 
@@ -94,7 +150,9 @@ public class Adeptor_Create_forth extends RecyclerView.Adapter<Adeptor_Create_fo
 
         TextView itemname,price,deadline,deadlineend,details;
 
-        Button pay;
+        Button deadlineButton,Deletebutton;
+
+
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -103,7 +161,8 @@ public class Adeptor_Create_forth extends RecyclerView.Adapter<Adeptor_Create_fo
             deadline=itemView.findViewById(R.id.deadline);
             deadlineend=itemView.findViewById(R.id.deadlineend);
             details=itemView.findViewById(R.id.details);
-           pay=itemView.findViewById(R.id.b1);
+            deadlineButton=itemView.findViewById(R.id.b1);
+            Deletebutton=itemView.findViewById(R.id.b2);
 
         }
     }

@@ -205,13 +205,5 @@ public class Join_third extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
 
-        Intent in=new Intent(Join_third.this,Join_second.class);
-        startActivity(in);
-        finish();
-
-    }
 }

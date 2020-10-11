@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,6 +68,7 @@ public class Join_forth extends AppCompatActivity {
             final String itemuid1=in1.getStringExtra("itemuid");
 
             itemname.setText(itemname1+"");
+            Toast.makeText(Join_forth.this, itemuid1+"", Toast.LENGTH_SHORT).show();
 
             db.collection(collegecode1+"").document(classcode1+"")
                     .collection("item").document(itemuid1+"")
@@ -79,7 +81,7 @@ public class Join_forth extends AppCompatActivity {
 
                     }
 
-                   // list_data.clear();
+                    list_data.clear();
                     for (QueryDocumentSnapshot documentSnapshot : value) {
 
                         Model_Join_forth code = documentSnapshot.toObject(Model_Join_forth.class);

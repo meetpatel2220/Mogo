@@ -83,7 +83,6 @@ public class Adeptor_Create_fifth extends RecyclerView.Adapter<Adeptor_Create_fi
                         public void onSuccess(Void aVoid) {
 
                             Toast.makeText(fcontext, fupload.get(position).getName()+" has got item", Toast.LENGTH_SHORT).show();
-                            notifyItemChanged(position);
 
                         }
                     }).addOnFailureListener(((Activity) fcontext), new OnFailureListener() {
