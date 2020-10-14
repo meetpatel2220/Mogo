@@ -99,6 +99,46 @@ public class Adeptor_Create_fifth extends RecyclerView.Adapter<Adeptor_Create_fi
             }
         });
 
+
+        holder.b2PayOffline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                sp = fcontext.getSharedPreferences(mypreference,
+                        Context.MODE_PRIVATE);
+
+                if (sp.contains("collegecode") && sp.contains("classcode")) {
+                    String classcode1 = sp.getString("classcode", "");
+                    String collegecode1 = sp.getString("collegecode", "");
+                    String collegename1 = sp.getString("collegename", "");
+
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("payment", "done (offline)");
+
+                    db.collection(collegecode1 + "").document(classcode1 + "")
+                            .collection("item").document(itemid1 + "")
+                            .collection("user").document(fupload.get(position).getUserid())
+                            .set(map, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Toast.makeText(fcontext, fupload.get(position).getName()+"'s payment done", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(fcontext, "Something Error !! ", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+
+                }
+
+            }
+        });
+
     }
 
     @Override
@@ -111,7 +151,7 @@ public class Adeptor_Create_fifth extends RecyclerView.Adapter<Adeptor_Create_fi
 
         TextView name,email,payment,received;
 
-        Button b1receive;
+        Button b1receive,b2PayOffline;
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -121,6 +161,10 @@ public class Adeptor_Create_fifth extends RecyclerView.Adapter<Adeptor_Create_fi
             received=itemView.findViewById(R.id.received);
 
             b1receive=itemView.findViewById(R.id.b1);
+            b2PayOffline=itemView.findViewById(R.id.b2);
+
+
+
 
         }
     }

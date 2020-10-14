@@ -20,6 +20,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Join_forth extends AppCompatActivity {
 
@@ -105,5 +106,24 @@ public class Join_forth extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,  Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK ) {
+
+                String res = data.getStringExtra("response");
+
+                String search = "SUCCESS";
+                if (Objects.requireNonNull(res).toLowerCase().contains(search.toLowerCase())) {
+                    Toast.makeText(this, "Payment Success ", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(this, "Payment Failed", Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                Toast.makeText(Join_forth.this, "data null !!", Toast.LENGTH_SHORT).show();
+            }
+        }
 
 }

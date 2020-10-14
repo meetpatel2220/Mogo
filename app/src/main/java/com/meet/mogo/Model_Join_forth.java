@@ -18,6 +18,7 @@ public class Model_Join_forth {
         this.payment = payment;
         this.received = received;
         this.userid = userid;
+
     }
 
     @PropertyName("name")
@@ -68,4 +69,6 @@ public class Model_Join_forth {
     public void setUserid(String userid) {
         this.userid = userid;
     }
+
+
 }

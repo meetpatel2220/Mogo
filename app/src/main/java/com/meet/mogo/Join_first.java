@@ -58,7 +58,7 @@ public class Join_first extends AppCompatActivity {
 
                         String classcodestring = code.getClasscode();
 
-                        Toast.makeText(Join_first.this, classcodestring, Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(Join_first.this, classcodestring, Toast.LENGTH_SHORT).show();
                         if (classcodestring.equals(classcode.getText().toString())) {
 
                             collegename(code.getCollegecode().toString());

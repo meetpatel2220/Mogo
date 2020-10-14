@@ -73,6 +73,7 @@ public class Create_forth extends AppCompatActivity {
 
                     }
 
+                    list_data.clear();
                     for (QueryDocumentSnapshot documentSnapshot : value) {
 
                         Model_Create_forth code = documentSnapshot.toObject(Model_Create_forth.class);

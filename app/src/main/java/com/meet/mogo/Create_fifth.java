@@ -85,6 +85,7 @@ public class Create_fifth extends AppCompatActivity {
 
                     }
 
+                    list_data.clear();
                     for (QueryDocumentSnapshot documentSnapshot : value) {
 
                         Model_Join_forth code = documentSnapshot.toObject(Model_Join_forth.class);

@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +31,7 @@ public class Create_second extends AppCompatActivity {
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     SharedPreferences sp;
     public static final String mypreference = "mypreference";
+
 
 
     @Override
@@ -48,13 +51,22 @@ public class Create_second extends AppCompatActivity {
     public void done(View v){
 
 
-        if(classcode.getText().toString().isEmpty()){
+
+        checkclasscode();
+
+        if(classcode.getText().toString().isEmpty() || classcode.getText().toString().equals("others")){
 
             classcode.setError("Please write classcode !!!");
             Toast.makeText(Create_second.this, "Please write classcode !!!", Toast.LENGTH_SHORT).show();
 
 
-        }else {
+        }else if(classcode.getText().toString().equals("others")){
+
+            classcode.setError("You can not take others as a classname !!");
+            Toast.makeText(Create_second.this, "Please write classcode !!!", Toast.LENGTH_SHORT).show();
+
+        }
+       else {
             sp = getSharedPreferences(mypreference,
                     Context.MODE_PRIVATE);
 
@@ -98,6 +110,42 @@ public class Create_second extends AppCompatActivity {
 
     }
 
+    public void checkclasscode(){
+
+
+        db.collection("Code").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                int i=0;
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+
+
+                    Model_Join_first code = documentSnapshot.toObject(Model_Join_first.class);
+
+                    String classcodestring = code.getClasscode();
+
+                    if (classcodestring.equals(classcode.getText().toString())) {
+
+                        i=1;
+
+
+                    }
+
+                }
+
+
+
+                    }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+
+            }
+        });
+
+    }
     public void getcollegenamecode(){
 
         sp = getSharedPreferences(mypreference,

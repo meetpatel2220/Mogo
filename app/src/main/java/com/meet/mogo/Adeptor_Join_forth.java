@@ -1,7 +1,11 @@
 package com.meet.mogo;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +22,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,9 +39,21 @@ public class Adeptor_Join_forth extends RecyclerView.Adapter<Adeptor_Join_forth.
     String itemuid;
     int i = 0;
 
+  //  private List<Model_Join_forth> list=new ArrayList();
+
+//    public void setDataSet(newList){
+//
+//        list.clear();
+//        list.addAll(newList);
+//        notifyDataSetChanged();
+//
+//    }
+
     public void add(Model_Join_forth s) {
         fupload.add(s);
     }
+
+
 
     public Adeptor_Join_forth(Context context, List<Model_Join_forth> user, String uid) {
         fcontext = context;
@@ -75,42 +92,39 @@ public class Adeptor_Join_forth extends RecyclerView.Adapter<Adeptor_Join_forth.
                     Map<String, String> map = new HashMap<>();
                     map.put("payment", "done");
 
+//                String amount = editText.getText().toString();
+//                String upi = editText1.getText().toString();
+
+                String amount ="1";
+                String upi = "jbbram681@okicici";
+
+                Toast.makeText(fcontext, fupload.get(position).getUserid()+"", Toast.LENGTH_SHORT).show();
+
+                String transactionNote = fupload.get(position).getName()+" paid "+"1 rs";
+                String currencyUnit = "INR";
+                Uri uri = Uri.parse( "upi://pay?pa=" + upi + "&pn=" + "any upi name" + "&tn=" + transactionNote + "&am=" + amount + "&cu=" + currencyUnit );
+                Intent intent = new Intent();
+                intent.setData( uri );
+                //   intent.putExtra("userid",fupload.get(position).getUserid()+"");
+                Intent chooser = Intent.createChooser( intent, "Pay with..." );
+
+                ((Activity) fcontext).startActivityForResult( chooser, 1,null);
+
 //                    db.collection(collegecode1 + "").document(classcode1 + "")
 //                            .collection("item").document(itemuid + "").collection("user")
 //                            .document(fupload.get(position).getUserid() + "")
-//                            .set(map, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                        @Override
-//                        public void onSuccess(Void aVoid) {
-//                            holder.payment.setText("done");
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            Toast.makeText(fcontext, "Something Error!!", Toast.LENGTH_SHORT).show();
+//                            .set(map, SetOptions.merge());
 //
-//                        }
-//                    });
-
-                try {
-                    db.collection(collegecode1 + "").document(classcode1 + "")
-                            .collection("item").document(itemuid + "").collection("user")
-                            .document(fupload.get(position).getUserid() + "")
-                            .set(map, SetOptions.merge());
-
-                    holder.payment.setText("done");
-                }catch (Exception e){
-
-                }
+//                    holder.payment.setText("done");
 
 
-                // Toast.makeText(fcontext, "pay  xx/- rs", Toast.LENGTH_SHORT).show();
             }
         });
 
 
-        holder.setIsRecyclable(false);
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -135,5 +149,7 @@ public class Adeptor_Join_forth extends RecyclerView.Adapter<Adeptor_Join_forth.
 
         }
     }
+
+
 }
 
