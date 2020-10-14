@@ -121,8 +121,6 @@ public class Join_forth extends AppCompatActivity {
                 } else {
                     Toast.makeText(this, "Payment Failed", Toast.LENGTH_SHORT).show();
                 }
-            }else {
-                Toast.makeText(Join_forth.this, "data null !!", Toast.LENGTH_SHORT).show();
             }
         }
 
