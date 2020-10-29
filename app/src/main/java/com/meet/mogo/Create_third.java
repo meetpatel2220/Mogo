@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class Create_third extends AppCompatActivity {
 
-    private TextView classcode, classname;
+    private TextView classcode;
     private EditText name, details, price, deadline;
     private ImageView imageview;
 
@@ -38,7 +38,7 @@ public class Create_third extends AppCompatActivity {
         setContentView(R.layout.activity_create_third);
 
         classcode = findViewById(R.id.classcode);
-        classname = findViewById(R.id.classname);
+
 
         name = findViewById(R.id.name);
         details = findViewById(R.id.details);
@@ -102,6 +102,7 @@ public class Create_third extends AppCompatActivity {
                 map.put("price", price.getText().toString());
                 map.put("deadline", deadline.getText().toString());
                 map.put("deadlineend", "no");
+                map.put("delete", "no");
 
 
                 db.collection(collegecode1 + "").document(classcode1 + "")

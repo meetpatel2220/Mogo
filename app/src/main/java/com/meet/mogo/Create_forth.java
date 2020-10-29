@@ -63,7 +63,7 @@ public class Create_forth extends AppCompatActivity {
 
 
             db.collection(collegecode1+"").document(classcode1+"")
-                    .collection("item").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    .collection("item").whereEqualTo("delete","no").addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 

@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/holo_blue_bright"
+    android:paddingHorizontal="10dp"
     tools:context=".Create_fifth">
-
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:padding="20dp">
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,7 +21,7 @@
             android:fontFamily="sans-serif-light"
             android:text="Class code"
             android:textColor="@color/darkBlack"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/classcode"
@@ -33,7 +32,7 @@
             android:fontFamily="sans-serif-light"
             android:text="classcode"
             android:textColor="@color/darkBlack"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,7 +42,7 @@
             android:fontFamily="sans-serif-light"
             android:text="College name"
             android:textColor="@color/darkBlack"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/collegename"
@@ -55,7 +54,7 @@
             android:fontFamily="sans-serif-light"
             android:text="College name"
             android:textColor="@color/darkBlack"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -65,7 +64,7 @@
             android:fontFamily="sans-serif-light"
             android:text="Item name"
             android:textColor="@color/darkBlack"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/itemname"
@@ -77,22 +76,16 @@
             android:fontFamily="sans-serif-light"
             android:text="item name"
             android:textColor="@color/darkBlack"
-            android:textSize="18sp" />
-
-
+            android:textSize="18sp"/>
     </RelativeLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/recycle">
-
-        </androidx.recyclerview.widget.RecyclerView>
-    </ScrollView>
-
+            android:layout_height="wrap_content"/>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

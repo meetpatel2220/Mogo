@@ -107,7 +107,6 @@ public class Join_third extends AppCompatActivity {
                 map.put("mobileno",mobileno.getText().toString()+"");
                 map.put("payment","left");
                 map.put("received","no");
-                map.put("paymode","none");
 
                 db.collection(collegecode1+"").document(classcode1+"")
                         .collection("item").document(itemuid+"")

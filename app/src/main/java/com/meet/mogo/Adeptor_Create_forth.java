@@ -102,21 +102,21 @@ public class Adeptor_Create_forth extends RecyclerView.Adapter<Adeptor_Create_fo
                 @Override
                 public void onClick(View view) {
 
+                    Map<String,String> map=new HashMap<>();
+                    map.put("delete","yes");
 
                     db.collection(collegecode1 + "").document(classcode1 + "")
                             .collection("item").document(fupload.get(position).getItemid())
-                            .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            .set(map,SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            Toast.makeText(fcontext, fupload.get(position).getName()+" is deleted successful !!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(fcontext, "item deleted successfully", Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-
-                            Toast.makeText(fcontext, "Something problem in delete item !! ", Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(fcontext, "Something error !!", Toast.LENGTH_SHORT).show();
                         }
                     });
 

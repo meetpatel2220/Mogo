@@ -7,22 +7,28 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
-public class Join_forth extends AppCompatActivity {
+public class Join_forth extends AppCompatActivity{
 
     private TextView classcode, collegename, itemname;
     private RecyclerView rv;
@@ -113,10 +119,48 @@ public class Join_forth extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK ) {
 
                 String res = data.getStringExtra("response");
+            sp = getSharedPreferences(mypreference,
+                    Context.MODE_PRIVATE);
+            String userid = sp.getString("userid", "");
+            String itemid = sp.getString("itemid", "");
+            String classcode1 = sp.getString("classcode", "");
+            String collegecode1 = sp.getString("collegecode", "");
 
-                String search = "SUCCESS";
+
+            String search = "SUCCESS";
                 if (Objects.requireNonNull(res).toLowerCase().contains(search.toLowerCase())) {
-                    Toast.makeText(this, "Payment Success ", Toast.LENGTH_SHORT).show();
+                    Map<String, String> map = new HashMap<>();
+                    map.put("payment", "done (online)");
+
+
+                    if(!userid.equals("") && !itemid.equals("")) {
+
+
+                        db.collection(collegecode1 + "").document(classcode1 + "")
+                                .collection("item").document(itemid + "").collection("user")
+                                .document(userid + "")
+                                .set(map, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putString("userid", "");
+                                editor.putString("itemid", "");
+                                editor.commit();
+
+                                Toast.makeText(Join_forth.this, "Payment success", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                                Toast.makeText(Join_forth.this, "You have some problem ,so contact your CR", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                    }
+
 
                 } else {
                     Toast.makeText(this, "Payment Failed", Toast.LENGTH_SHORT).show();
