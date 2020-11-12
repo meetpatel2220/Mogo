@@ -1,154 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="4dp">
+    android:layout_margin="5dp"
+    app:cardCornerRadius="5dp">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/textViewStyle"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/item_name"
+            android:textSize="@dimen/_20sdp"/>
+
+        <TextView
+            android:id="@+id/details"
+            style="@style/textViewStyle"
+            android:layout_below="@+id/name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@string/item_details"
+            android:textSize="@dimen/_16sdp"/>
+
+        <View
+            android:id="@+id/divider"
+            style="@style/DividerHorizontal"
+            android:layout_below="@id/details"/>
 
         <RelativeLayout
+            android:id="@+id/allDetailsRL"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:padding="20dp">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:layout_marginTop="@dimen/_7sdp">
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/priceDeadlineEndText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-light"
-                android:text="item name"
-                android:textColor="@color/darkBlack"
-                android:textSize="18sp" />
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/name"
+                <TextView
+                    style="@style/textViewStyle"
+                    android:text="@string/price"/>
+
+                <TextView
+                    style="@style/textViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/deadline"/>
+
+                <TextView
+                    style="@style/textViewStyle"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/deadline_end"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="180dp"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-light"
-                android:text="item name"
-                android:textColor="@color/darkBlack"
-                android:textSize="18sp" />
+                android:layout_marginStart="@dimen/_60sdp"
+                android:layout_toEndOf="@+id/priceDeadlineEndText"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/name"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-light"
-                android:text="price"
-                android:textColor="@color/darkBlack"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/price"
+                    style="@style/textViewStyle"
+                    android:text="@string/price"/>
 
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/name"
-                android:layout_marginStart="180dp"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-light"
-                android:text="price"
-                android:textColor="@color/darkBlack"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/deadline"
+                    style="@style/textViewStyle"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/deadline"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/price"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-light"
-                android:text="deadline"
-                android:textColor="@color/darkBlack"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/deadLineEnd"
+                    style="@style/textViewStyle"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/deadline_end"/>
+            </LinearLayout>
+        </RelativeLayout>
 
-            <TextView
-                android:id="@+id/deadline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/price"
-                android:layout_marginStart="180dp"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-light"
-                android:text="deadline"
-                android:textColor="@color/darkBlack"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/deadline"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-light"
-                android:text="deadlineend"
-                android:textColor="@color/darkBlack"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/deadlineend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/deadline"
-                android:layout_marginStart="180dp"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-light"
-                android:text="deadlineend"
-                android:textColor="@color/darkBlack"
-                android:textSize="18sp" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/deadlineend"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-light"
-                android:text="Details"
-                android:textColor="@color/darkBlack"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/deadlineend"
-                android:layout_marginStart="180dp"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-light"
-                android:text="deadlineend"
-                android:textColor="@color/darkBlack"
-                android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/allDetailsRL"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_10sdp">
 
             <Button
                 android:id="@+id/b1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Deadline end"
-                android:layout_below="@+id/details"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-light"
->
-
-            </Button>
+                style="@style/buttonStyle"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:text="@string/deadline_end"
+                android:textColor="@color/btn_border"/>
 
             <Button
                 android:id="@+id/b2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Delete item"
-                android:layout_below="@+id/b1"
-                android:layout_marginTop="7dp"
-                android:fontFamily="sans-serif-light"
-                >
-
-            </Button>
-
-
-        </RelativeLayout>
-
-
-
+                style="@style/buttonStyle"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:text="@string/delete_item"
+                android:textColor="@color/btn_border"/>
+        </LinearLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

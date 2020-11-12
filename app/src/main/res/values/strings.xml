@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Mogo</string>
+    <string name="item_name">Item name</string>
+    <string name="item_details">Item Details</string>
+    <string name="price">Price</string>
+    <string name="deadline">Deadline</string>
+    <string name="deadline_end">Deadline End</string>
+    <string name="delete_item">Delete Item</string>
+    <string name="all_item">All Item</string>
 </resources>

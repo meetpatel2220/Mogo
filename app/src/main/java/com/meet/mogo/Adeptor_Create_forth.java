@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -154,15 +153,14 @@ public class Adeptor_Create_forth extends RecyclerView.Adapter<Adeptor_Create_fo
 
 
         ViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            itemname=itemView.findViewById(R.id.name);
-            price=itemView.findViewById(R.id.price);
-            deadline=itemView.findViewById(R.id.deadline);
-            deadlineend=itemView.findViewById(R.id.deadlineend);
-            details=itemView.findViewById(R.id.details);
-            deadlineButton=itemView.findViewById(R.id.b1);
-            Deletebutton=itemView.findViewById(R.id.b2);
+            super( itemView );
+            itemname = itemView.findViewById( R.id.name );
+            price = itemView.findViewById( R.id.price );
+            deadline = itemView.findViewById( R.id.deadline );
+            deadlineend = itemView.findViewById( R.id.deadLineEnd );
+            details = itemView.findViewById( R.id.details );
+            deadlineButton = itemView.findViewById( R.id.b1 );
+            Deletebutton = itemView.findViewById( R.id.b2 );
 
         }
     }
