@@ -38,56 +38,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/divider"
-            android:layout_marginTop="@dimen/_7sdp">
+            android:layout_marginTop="@dimen/_7sdp"
+            android:paddingHorizontal="@dimen/_10sdp">
 
-            <LinearLayout
-                android:id="@+id/priceDeadlineEndText"
+            <TextView
+                android:id="@+id/priceText"
+                style="@style/textViewStyle"
+                android:text="@string/price"/>
+
+            <TextView
+                android:id="@+id/price"
+                style="@style/textViewStyle"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_toEndOf="@id/deadLineEnd"
+                android:text="@string/price"/>
+
+            <TextView
+                android:id="@+id/deadlineText"
+                style="@style/textViewStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:orientation="vertical">
+                android:layout_below="@+id/price"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="@string/deadline"/>
 
-                <TextView
-                    style="@style/textViewStyle"
-                    android:text="@string/price"/>
+            <TextView
+                android:id="@+id/deadline"
+                style="@style/textViewStyle"
+                android:layout_below="@+id/price"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_toEndOf="@id/deadLineEnd"
+                android:text="@string/deadline"/>
 
-                <TextView
-                    style="@style/textViewStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="@string/deadline"/>
+            <TextView
+                android:id="@+id/deadLineEnd"
+                style="@style/textViewStyle"
+                android:layout_below="@+id/deadline"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="@string/deadline_end"/>
 
-                <TextView
-                    style="@style/textViewStyle"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="@string/deadline_end"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_60sdp"
-                android:layout_toEndOf="@+id/priceDeadlineEndText"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/price"
-                    style="@style/textViewStyle"
-                    android:text="@string/price"/>
-
-                <TextView
-                    android:id="@+id/deadline"
-                    style="@style/textViewStyle"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="@string/deadline"/>
-
-                <TextView
-                    android:id="@+id/deadLineEnd"
-                    style="@style/textViewStyle"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="@string/deadline_end"/>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/deadLineEndText"
+                style="@style/textViewStyle"
+                android:layout_below="@+id/deadline"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_toEndOf="@id/deadLineEnd"
+                android:text="@string/deadline_end"/>
         </RelativeLayout>
 
         <LinearLayout
