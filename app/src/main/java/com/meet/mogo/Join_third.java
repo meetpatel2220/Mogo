@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.accounts.AccountManager;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -32,9 +33,10 @@ public class Join_third extends AppCompatActivity {
     private EditText name,mobileno;
     private static final int REQUEST_CODE_EMAIL = 1;
 
+    int i=0;
     SharedPreferences sp;
     public static final String mypreference = "mypreference";
-
+    private ProgressDialog mRegProgress;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
@@ -48,6 +50,7 @@ public class Join_third extends AppCompatActivity {
 
         name=findViewById(R.id.name);
         mobileno=findViewById(R.id.mobileno);
+        mRegProgress = new ProgressDialog( this );
 
         Intent in1=getIntent();
         String itemuid=in1.getStringExtra("itemuid");
@@ -89,6 +92,10 @@ public class Join_third extends AppCompatActivity {
 
         }else {
 
+            mRegProgress.setTitle( "Loadine..." );
+            mRegProgress.setMessage( "Please wait sometime" );
+            mRegProgress.setCanceledOnTouchOutside( false );
+            mRegProgress.show();
 
             sp = getSharedPreferences(mypreference,
                     Context.MODE_PRIVATE);
@@ -114,13 +121,15 @@ public class Join_third extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
 
+                        gmailid.setText("");
+                        mRegProgress.dismiss();
                         Toast.makeText(Join_third.this, "All is done!!", Toast.LENGTH_SHORT).show();
 
                     }
                 }).addOnFailureListener(Join_third.this, new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
+                        mRegProgress.hide();
                         Toast.makeText(Join_third.this, "Error Error !!!!!", Toast.LENGTH_SHORT).show();
                     }
                 });

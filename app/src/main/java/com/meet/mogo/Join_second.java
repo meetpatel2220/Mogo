@@ -75,7 +75,7 @@ public class Join_second extends AppCompatActivity {
             collegename.setText(collegename1);
 
             db.collection(collegecode1 + "").document(classcode1 + "")
-                    .collection("item").addSnapshotListener(Join_second.this, new EventListener<QuerySnapshot>() {
+                    .collection("item").whereEqualTo("delete","no").addSnapshotListener(Join_second.this, new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 

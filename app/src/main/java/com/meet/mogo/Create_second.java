@@ -112,7 +112,7 @@ public class Create_second extends AppCompatActivity {
     public void done(View v) {
 
 
-        checkclasscode();
+       // checkclasscode();
 
         if (classcode.getText().toString().isEmpty() || classcode.getText().toString().equals("others")) {
 
@@ -175,7 +175,7 @@ public class Create_second extends AppCompatActivity {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                int i = 0;
+
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
 
 

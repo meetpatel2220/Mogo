@@ -66,7 +66,7 @@ public class Adeptor_Join_forth extends RecyclerView.Adapter<Adeptor_Join_forth.
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         holder.name.setText(fupload.get(position).getName());
-        holder.email.setText(fupload.get(position).getEmail());
+        holder.email.setText(fupload.get(position).getMobileno());
         holder.payment.setText(fupload.get(position).getPayment());
         holder.received.setText(fupload.get(position).getReceived());
         sp = fcontext.getSharedPreferences(mypreference,
@@ -89,7 +89,7 @@ public class Adeptor_Join_forth extends RecyclerView.Adapter<Adeptor_Join_forth.
 
            if(payment.equals("done (online)") || payment.equals("done (offline)")){
 
-               holder.pay.setVisibility(View.INVISIBLE);
+               holder.pay.setVisibility(View.GONE);
 
            }
 
@@ -119,44 +119,72 @@ public class Adeptor_Join_forth extends RecyclerView.Adapter<Adeptor_Join_forth.
                 editor.putString("itemid", itemuid+"");
                 editor.commit();
 
+                String upi="aditya2211desai@oksbi";
+                String amount="1";
+                String transactionNote = fupload.get(position).getName()+" paid "+amount+" rs";
+                String currencyUnit = "INR";
 
-                    //get amount
-
-                db.collection(collegecode1 + "").document(classcode1 + "")
-                           .collection("item").document(itemuid + "").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        final String amount=documentSnapshot.getString("price");
-
-                        //get upi
-                 db1.collection(collegecode1+"").document("others").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                     @Override
-                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-
-                         String upi=documentSnapshot.getString("upi");
-
-                         Toast.makeText(fcontext, amount+upi+"", Toast.LENGTH_SHORT).show();
-
-                         String transactionNote = fupload.get(position).getName()+" paid "+"1 rs";
-                         String currencyUnit = "INR";
-                         Uri uri = Uri.parse( "upi://pay?pa=" + upi + "&pn=" + "any upi name" + "&tn=" + transactionNote + "&am=" + amount + "&cu=" + currencyUnit );
-                         Intent intent = new Intent();
-                         intent.setData( uri );
-                         intent.setPackage("com.google.android.apps.nbu.paisa.user");
-                         Intent chooser = Intent.createChooser( intent, "Pay with..." );
+                Uri uri = Uri.parse("upi://pay").buildUpon()
+                        .appendQueryParameter("pa", "9099782442-2@okbizaxis")  // google pay business id
+                        .appendQueryParameter("pn", "meet")
+                        .appendQueryParameter("mc", "")            /// 1st param - use it (it was commented on my earlier tutorial)
+                        //.appendQueryParameter("tid", "02125412")
+                        .appendQueryParameter("tr", "25584584")   /// 2nd param - use it (it was commented on my earlier tutorial)
+                        .appendQueryParameter("tn", "write anything")
+                        .appendQueryParameter("am", amount)
+                        .appendQueryParameter("cu", "INR")
+                        //.appendQueryParameter("refUrl", "blueapp")
+                        .build();
+               // Uri uri = Uri.parse( "upi://pay?pa=" + upi + "&pn=" + "any upi name" + "&tn=" + transactionNote + "&am=" + amount + "&cu=" + currencyUnit );
+                Intent intent = new Intent();
+                intent.setData( uri );
+                intent.setPackage("com.google.android.apps.nbu.paisa.user");
+                Intent chooser = Intent.createChooser( intent, "Pay with..." );
 
 
-                         ((Activity) fcontext).startActivityForResult( chooser, 1,null);
+                ((Activity) fcontext).startActivityForResult( chooser, 1,null);
 
 
-                     }
-                 });
-
-
-
-
-                    }
-                });
+//                //get amount
+//
+//                db.collection(collegecode1 + "").document(classcode1 + "")
+//                           .collection("item").document(itemuid + "").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                        final String amount=documentSnapshot.getString("price");
+//
+//                        //get upi
+//                 db1.collection(collegecode1+"").document("others").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                     @Override
+//                     public void onSuccess(DocumentSnapshot documentSnapshot) {
+//
+//                         String upi=documentSnapshot.getString("upi");
+//
+//
+//                       //  Toast.makeText(fcontext, amount+upi+"", Toast.LENGTH_SHORT).show();
+//                        // String amount="1";
+//                         //String upi=documentSnapshot.getString("upi");
+//
+//                         String transactionNote = fupload.get(position).getName()+" paid "+amount+" rs";
+//                         String currencyUnit = "INR";
+//                         Uri uri = Uri.parse( "upi://pay?pa=" + upi + "&pn=" + "any upi name" + "&tn=" + transactionNote + "&am=" + amount + "&cu=" + currencyUnit );
+//                         Intent intent = new Intent();
+//                         intent.setData( uri );
+//                         intent.setPackage("com.google.android.apps.nbu.paisa.user");
+//                         Intent chooser = Intent.createChooser( intent, "Pay with..." );
+//
+//
+//                         ((Activity) fcontext).startActivityForResult( chooser, 1,null);
+//
+//
+//                     }
+//                 });
+//
+//
+//
+//
+//                    }
+//                });
 
              //   String amount ="1";
               //  String upi = "jbbram681@okicici";

@@ -1,121 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cv"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_margin="5dp"
+app:cardCornerRadius="5dp">
+
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="1dp">
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+
+    <View
+        android:id="@+id/divider"
+        style="@style/DividerHorizontal"
+        />
 
     <RelativeLayout
+        android:id="@+id/allDetailsRL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:padding="20dp">
+        android:layout_below="@id/divider"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:paddingHorizontal="@dimen/_10sdp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:fontFamily="sans-serif-light"
-            android:text="name"
-            android:textColor="@color/darkBlack"
-            android:textSize="18sp"/>
+            android:id="@+id/nameText"
+            style="@style/textViewStyle"
+            android:text="name"/>
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="7dp"
-            android:fontFamily="sans-serif-light"
-            android:text="name"
-            android:textColor="@color/darkBlack"
-            android:textSize="18sp"/>
+            style="@style/textViewStyle"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_toEndOf="@id/paymentText"
+            android:text="name"/>
 
         <TextView
+            android:id="@+id/emailText"
+            style="@style/textViewStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/name"
-            android:layout_marginTop="7dp"
-            android:fontFamily="sans-serif-light"
-            android:text="email"
-            android:textColor="@color/darkBlack"
-            android:textSize="18sp"/>
+            android:layout_below="@+id/name"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="mobile no."/>
 
         <TextView
             android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/name"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="7dp"
-            android:fontFamily="sans-serif-light"
-            android:text="email"
-            android:textColor="@color/darkBlack"
-            android:textSize="18sp"/>
+            style="@style/textViewStyle"
+            android:layout_below="@+id/name"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toEndOf="@id/paymentText"
+            android:text="mobile no"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/email"
-            android:layout_marginTop="7dp"
-            android:fontFamily="sans-serif-light"
-            android:text="payment"
-            android:textColor="@color/darkBlack"
-            android:textSize="18sp"/>
+            android:id="@+id/paymentText"
+            style="@style/textViewStyle"
+            android:layout_below="@+id/email"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="payment"/>
 
         <TextView
             android:id="@+id/payment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/email"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="7dp"
-            android:fontFamily="sans-serif-light"
-            android:text="done/left"
-            android:textColor="@color/darkBlack"
-            android:textSize="18sp"/>
+            style="@style/textViewStyle"
+            android:layout_below="@+id/email"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toEndOf="@id/paymentText"
+            android:text="payment"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/receivedText"
+            style="@style/textViewStyle"
             android:layout_below="@+id/payment"
-            android:layout_marginTop="7dp"
-            android:fontFamily="sans-serif-light"
-            android:text="received"
-            android:textColor="@color/darkBlack"
-            android:textSize="18sp"/>
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="received"/>
 
         <TextView
             android:id="@+id/received"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/textViewStyle"
             android:layout_below="@+id/payment"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="7dp"
-            android:fontFamily="sans-serif-light"
-            android:text="yes/no"
-            android:textColor="@color/darkBlack"
-            android:textSize="18sp"/>
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toEndOf="@id/paymentText"
+            android:text="received"/>
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/allDetailsRL"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_10sdp">
 
         <Button
             android:id="@+id/b1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/received"
-            android:layout_marginTop="7dp"
-            android:fontFamily="sans-serif-light"
-            android:text="item received"/>
+            style="@style/buttonStyle"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_weight="1"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:text="item received"
+            android:textColor="@color/btn_border"/>
 
         <Button
             android:id="@+id/b2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/b1"
-            android:layout_marginTop="7dp"
-            android:fontFamily="sans-serif-light"
-            android:text="pay offfline"/>
-    </RelativeLayout>
+            style="@style/buttonStyle"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_weight="1"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:text="pay offline"
+            android:textColor="@color/btn_border"/>
+    </LinearLayout>
+</RelativeLayout>
 </androidx.cardview.widget.CardView>

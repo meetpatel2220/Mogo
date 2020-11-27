@@ -57,7 +57,8 @@ public class Adeptor_Join_two extends RecyclerView.Adapter<Adeptor_Join_two.View
         holder.name.setText(fupload.get(position).getName());
         holder.price.setText(fupload.get(position).getPrice());
         holder.deadline.setText(fupload.get(position).getDeadline());
-
+        holder.details.setText(fupload.get(position).getDetails());
+        holder.deadlineend.setText(fupload.get(position).getDeadlineend());
 //        holder.cv.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -127,7 +128,7 @@ public class Adeptor_Join_two extends RecyclerView.Adapter<Adeptor_Join_two.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name,price,deadline;
+        TextView name,price,deadline,deadlineend,details;
         CardView cv;
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -135,6 +136,9 @@ public class Adeptor_Join_two extends RecyclerView.Adapter<Adeptor_Join_two.View
             name=itemView.findViewById(R.id.name);
             price=itemView.findViewById(R.id.price);
             deadline=itemView.findViewById(R.id.deadline);
+            deadlineend=itemView.findViewById(R.id.deadlineend);
+            details=itemView.findViewById(R.id.details);
+
             cv=itemView.findViewById(R.id.cv);
 
         }

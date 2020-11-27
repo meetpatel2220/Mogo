@@ -56,7 +56,7 @@ public class Adeptor_Create_fifth extends RecyclerView.Adapter<Adeptor_Create_fi
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         holder.name.setText(fupload.get(position).getName());
-        holder.email.setText(fupload.get(position).getEmail());
+        holder.email.setText(fupload.get(position).getMobileno());
         holder.payment.setText(fupload.get(position).getPayment());
         holder.received.setText(fupload.get(position).getReceived());
 
